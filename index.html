@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kevin David | DJ & Producer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #FF2C54;
+            --white: #ffffff;
+            --black: #0a0a0a;
+            --soft-gray: #f8f8f8;
+            --expo: cubic-bezier(0.85, 0, 0.15, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--black);
+            overflow: hidden;
+            width: 100%;
+        }
+
+        /* --- INTRO PRE-LOADER --- */
+        .intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--black);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: transform 1s var(--expo);
+        }
+
+        .intro-title {
+            font-family: 'Syne', sans-serif;
+            color: var(--white);
+            font-size: 0.9rem;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .loader-bar {
+            width: 150px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .loader-bar::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: var(--accent);
+            animation: load 2s ease-in-out forwards;
+        }
+
+        @keyframes load { to { width: 100%; } }
+        .web-ready .intro-screen { transform: translateY(-100%); }
+
+        /* --- LAYOUT SIDE-BY-SIDE (OBLIGATORIO EN TODO TAMAÑO) --- */
+        .main-content {
+            display: flex; /* Esto mantiene las dos columnas */
+            flex-direction: row; /* Siempre horizontal */
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--white);
+            opacity: 0;
+            transition: opacity 1s ease 0.5s;
+        }
+
+        .web-ready .main-content { opacity: 1; }
+
+        /* Columna Izquierda: Foto */
+        .visual-side {
+            width: 40%; /* Ancho fijo para la foto */
+            background-color: var(--soft-gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            border-right: 1px solid #eee;
+        }
+
+        .image-container {
+            width: 90%;
+            position: relative;
+        }
+
+        .image-container img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            box-shadow: 10px 10px 0px var(--accent);
+            display: block;
+        }
+
+        /* Columna Derecha: Texto */
+        .content-side {
+            width: 60%; /* Ancho fijo para el texto */
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow-y: auto; /* Permite scroll si el texto es largo en móvil */
+        }
+
+        .eyebrow {
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #aaa;
+            margin-bottom: 10px;
+        }
+
+        .name-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.8rem, 8vw, 5rem);
+            line-height: 0.9;
+            color: var(--black);
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            margin-bottom: 15px;
+        }
+
+        .name-title span { color: var(--accent); display: block; }
+
+        .bio-box h2 { font-size: 1rem; margin-bottom: 5px; font-weight: 700; }
+        .bio-box p { font-size: 0.85rem; color: #555; line-height: 1.5; margin-bottom: 15px; }
+
+        /* Grid de Datos Personales */
+        .personal-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Una columna dentro de la columna de texto */
+            gap: 12px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .data-item span { color: var(--accent); font-weight: 700; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; display: block; }
+        .data-item p { font-size: 0.85rem; font-weight: 600; color: var(--black); }
+
+        /* Ajustes específicos para pantallas muy pequeñas (Móvil) */
+        @media (max-width: 480px) {
+            .visual-side { width: 45%; }
+            .content-side { width: 55%; padding: 15px; }
+            .name-title { letter-spacing: -1px; }
+            .image-container img { box-shadow: 6px 6px 0px var(--accent); }
+            .bio-box p { font-size: 0.75rem; }
+            .data-item p { font-size: 0.75rem; }
+        }
+    </style>
+</head>
+<body id="mainBody">
+
+    <div class="intro-screen">
+        <div class="intro-title">Conozca a nuestro equipo</div>
+        <div class="loader-bar"></div>
+    </div>
+
+    <div class="main-content">
+        
+        <div class="visual-side">
+            <div class="image-container">
+                <img src="https://i.postimg.cc/xTBrN1Fv/Mesa-de-trabajo-1.png" alt="Kevin David">
+            </div>
+        </div>
+
+        <div class="content-side">
+            <p class="eyebrow">Creative Founder</p>
+            <h1 class="name-title">DJ <span>KEVIN</span></h1>
+
+            <div class="bio-box">
+                <h2>Kevin David</h2>
+                <p>DJ con principios, productor musical y creador de este concepto.</p>
+            </div>
+
+            <div class="personal-grid">
+                <div class="data-item"><span>Nacionalidad</span><p>Paraguaya 🇵🇾</p></div>
+                <div class="data-item"><span>Residencia</span><p>Valencia, ES 🇪🇸</p></div>
+                <div class="data-item"><span>Status</span><p>Director General</p></div>
+                <div class="data-item"><span>Expertise</span><p>Producción</p></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('mainBody').classList.add('web-ready');
+            }, 2500);
+        });
+    </script>
+</body>
+</html>
